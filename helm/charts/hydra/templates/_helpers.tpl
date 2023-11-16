@@ -74,7 +74,7 @@ Generate the name of the secret resource containing secrets
 */}}
 {{- define "hydra.secretname" -}}
 {{- if .Values.secret.nameOverride -}}
-{{- .Values.secret.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- tpl (.Values.secret.nameOverride) . | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
 {{ include "hydra.fullname" . }}
 {{- end -}}

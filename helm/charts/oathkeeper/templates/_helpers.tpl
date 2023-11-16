@@ -29,7 +29,7 @@ Create a secret name which can be overridden.
 */}}
 {{- define "oathkeeper.secretname" -}}
 {{- if .Values.secret.nameOverride -}}
-{{- .Values.secret.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- tpl (.Values.secret.nameOverride) . | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
 {{ include "oathkeeper.fullname" . }}
 {{- end -}}

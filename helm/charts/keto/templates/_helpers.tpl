@@ -28,7 +28,7 @@ Create a secret name which can be overridden.
 */}}
 {{- define "keto.secretname" -}}
 {{- if .Values.secret.nameOverride -}}
-{{- .Values.secret.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- tpl (.Values.secret.nameOverride) . | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
 {{ include "keto.fullname" . }}
 {{- end -}}
