@@ -15,7 +15,7 @@ metadata:
     {{- include "hydra.labels" . | nindent 4 }}
   {{- with .Values.ingress.admin.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{- tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
 spec:
   ingressClassName: {{ .Values.ingress.admin.className }}

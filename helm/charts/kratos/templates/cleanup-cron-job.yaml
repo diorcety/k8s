@@ -11,11 +11,11 @@ metadata:
   labels:
     {{- include "kratos.cleanup.labels" . | nindent 4 }}
     {{- with .Values.cronjob.cleanup.labels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
   annotations:
     {{- with .Values.cronjob.cleanup.annotations }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
 spec:
   concurrencyPolicy: Forbid

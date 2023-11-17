@@ -13,11 +13,11 @@ metadata:
   labels:
     {{- include "kratos.labels" . | nindent 4 }}
     {{- with .Values.deployment.labels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
   annotations:
     {{- with .Values.job.annotations }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
 spec:
   template:

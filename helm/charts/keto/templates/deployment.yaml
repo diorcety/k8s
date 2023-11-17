@@ -28,11 +28,11 @@ metadata:
   labels:
     {{- include "keto.labels" . | nindent 4 }}
     {{- with $extraLabels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
   annotations:
     {{- with .Values.deployment.annotations }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
 spec:
 {{- if not $autoscaling.enabled }}

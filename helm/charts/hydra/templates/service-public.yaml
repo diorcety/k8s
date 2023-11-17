@@ -9,11 +9,11 @@ metadata:
   labels:
     {{- include "hydra.labels" . | nindent 4 }}
     {{- with .Values.service.public.labels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
   annotations:
     {{- with .Values.service.public.annotations }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
 spec:
   type: {{ .Values.service.public.type }}

@@ -115,7 +115,7 @@ Generate the configmap data, redacting secrets
 */}}
 {{- define "hydra.configmap" -}}
 {{- $config := omit .Values.hydra.config "dsn" "secrets" -}}
-{{- toYaml $config -}}
+{{- tpl (toYaml $config) . -}}
 {{- end -}}
 
 {{/*

@@ -11,11 +11,11 @@ metadata:
     app.kubernetes.io/component: metrics
 {{ include "oathkeeper.labels" . | indent 4 }}
     {{- with .Values.service.metrics.labels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
   {{- with .Values.service.metrics.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{- tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
 spec:
   type: {{ .Values.service.metrics.type }}
@@ -45,11 +45,11 @@ metadata:
     app.kubernetes.io/component: metrics
 {{ include "oathkeeper.labels" . | indent 4 }}
     {{- with merge .Values.serviceMonitor.labels .Values.service.metrics.labels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
   {{- with .Values.service.metrics.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{- tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
 spec:
   endpoints:

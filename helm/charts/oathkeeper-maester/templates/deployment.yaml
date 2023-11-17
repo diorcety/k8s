@@ -10,7 +10,7 @@ metadata:
   labels:
     {{- include "oathkeeper-maester.labels" . | nindent 4 }}
     {{- with .Values.deployment.extraLabels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
 spec:
   replicas: {{ .Values.replicaCount }}

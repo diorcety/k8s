@@ -11,11 +11,11 @@ metadata:
     app.kubernetes.io/component: metrics
 {{ include "keto.labels" . | indent 4 }}
   {{- with .Values.serviceMonitor.labels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
   {{- with .Values.service.metrics.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{- tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
 spec:
   endpoints:

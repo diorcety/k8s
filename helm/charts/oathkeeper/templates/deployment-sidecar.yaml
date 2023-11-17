@@ -11,11 +11,11 @@ metadata:
     mode: {{ .Values.global.ory.oathkeeper.maester.mode }}
     {{- include "oathkeeper.labels" . | nindent 4 }}
     {{- with .Values.deployment.labels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
   annotations:
     {{- with .Values.deployment.annotations }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
 spec:
   replicas: {{ .Values.replicaCount }}

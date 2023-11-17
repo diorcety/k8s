@@ -11,7 +11,7 @@ metadata:
     {{- include "kratos.labels" $root | nindent 4 }}
   annotations: 
     {{- with $.Values.configmap.annotations }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
 data:
   {{- if $resultEntry.subject }}

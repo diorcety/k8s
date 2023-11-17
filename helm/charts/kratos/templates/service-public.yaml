@@ -8,13 +8,13 @@ metadata:
   {{- end }}
   labels:
     {{- with .Values.service.public.labels }}
-      {{- toYaml . | nindent 4 }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
     app.kubernetes.io/component: public
 {{ include "kratos.labels" . | indent 4 }}
   {{- with .Values.service.public.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{- tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
 spec:
   type: {{ .Values.service.public.type }}
