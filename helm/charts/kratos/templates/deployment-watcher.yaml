@@ -28,14 +28,14 @@ spec:
         app.kubernetes.io/name: {{ include "kratos.name" . }}-watcher
         app.kubernetes.io/instance: {{ .Release.Name }}
         {{- with .Values.deployment.labels }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
         {{- with .Values.watcher.podMetadata.labels }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
       annotations:
         {{- with .Values.watcher.podMetadata.annotations }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
     spec:
       automountServiceAccountToken: {{ .Values.deployment.automountServiceAccountToken }}

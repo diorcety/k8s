@@ -32,14 +32,14 @@ spec:
         app.kubernetes.io/name: {{ include "oathkeeper-maester.fullname" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
         {{- with .Values.deployment.podMetadata.labels }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
       annotations:
         {{- with .Values.deployment.podMetadata.annotations }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
         {{- with .Values.deployment.annotations }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}

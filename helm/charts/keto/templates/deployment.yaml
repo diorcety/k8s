@@ -49,18 +49,18 @@ spec:
       annotations:
         {{- include "keto.annotations.checksum" . | indent 8 -}}
         {{- with $podAnnotations }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
         {{- with $.Values.deployment.podMetadata.annotations }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
       labels:
         {{- include "keto.selectorLabels" . | nindent 8 }}
         {{- with $extraLabels }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
         {{- with $.Values.deployment.podMetadata.labels }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}

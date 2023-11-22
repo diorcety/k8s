@@ -26,11 +26,11 @@ spec:
       labels:
 {{ include "kratos-selfservice-ui-node.labels" . | indent 8 }}
         {{- with .Values.deployment.labels }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
       annotations:
         {{- with .Values.deployment.annotations }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
     spec:
     {{- with .Values.imagePullSecrets }}

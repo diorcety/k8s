@@ -27,19 +27,19 @@ spec:
     metadata: 
       annotations:
         {{- with .Values.job.annotations }}  
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
         {{- with .Values.job.podMetadata.annotations }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
       labels:
         app.kubernetes.io/name: {{ include "keto.fullname" . }}-automigrate
         app.kubernetes.io/instance: {{ .Release.Name }}
         {{- with $extraLabels }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
         {{- with .Values.job.podMetadata.labels }}
-          {{- toYaml . | nindent 8 }}
+          {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
