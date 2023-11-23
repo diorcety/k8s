@@ -31,7 +31,7 @@ spec:
           {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
       labels:
-        app.kubernetes.io/name: {{ include "hydra.fullname" . }}-automigrate
+        app.kubernetes.io/name: {{ include "hydra.name" . }}-automigrate
         app.kubernetes.io/instance: {{ .Release.Name }}        
         {{- with .Values.job.labels }}
           {{- tpl (toYaml .) $ | nindent 8 }}

@@ -30,7 +30,7 @@ spec:
           {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
       labels:
-        app.kubernetes.io/name: {{ include "kratos.fullname" . }}-automigrate
+        app.kubernetes.io/name: {{ include "kratos.name" . }}-automigrate
         app.kubernetes.io/instance: {{ .Release.Name }}
         {{- with .Values.deployment.labels }}
           {{- tpl (toYaml .) $ | nindent 8 }}

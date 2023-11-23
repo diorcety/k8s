@@ -26,6 +26,6 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "kratos.fullname" . }}-courier
+    app.kubernetes.io/name: {{ include "kratos.name" . }}-courier
     app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

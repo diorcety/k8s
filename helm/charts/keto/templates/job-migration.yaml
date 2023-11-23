@@ -33,7 +33,7 @@ spec:
           {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
       labels:
-        app.kubernetes.io/name: {{ include "keto.fullname" . }}-automigrate
+        app.kubernetes.io/name: {{ include "keto.name" . }}-automigrate
         app.kubernetes.io/instance: {{ .Release.Name }}
         {{- with $extraLabels }}
           {{- tpl (toYaml .) $ | nindent 8 }}
