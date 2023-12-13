@@ -10,3 +10,6 @@ metadata:
 data:
   "keto.yaml": |
     {{- include "keto.configmap" . | nindent 4 }}
+{{ with .Values.configfiles }}
+{{ toYaml . | indent 2 }}
+{{ end }}
