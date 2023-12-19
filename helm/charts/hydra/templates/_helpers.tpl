@@ -123,7 +123,7 @@ Generate the urls.issuer value
 */}}
 {{- define "hydra.config.urls.issuer" -}}
 {{- if .Values.hydra.config.urls.self.issuer -}}
-{{- .Values.hydra.config.urls.self.issuer }}
+{{- tpl .Values.hydra.config.urls.self.issuer . }}
 {{- else if .Values.ingress.public.enabled -}}
 {{- $host := index .Values.ingress.public.hosts 0 -}}
 http{{ if $.Values.ingress.public.tls }}s{{ end }}://{{ $host.host }}
