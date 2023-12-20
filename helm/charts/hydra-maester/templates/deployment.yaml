@@ -41,7 +41,7 @@ spec:
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       volumes:
         {{- if .Values.deployment.extraVolumes }}
@@ -94,21 +94,21 @@ spec:
       {{- end }}
       nodeSelector:
       {{- with .Values.deployment.nodeSelector }}
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
     {{- with .Values.affinity }}
       affinity:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
     {{- end }}
     {{- with .Values.deployment.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
     {{- end }}
     {{- with .Values.deployment.topologySpreadConstraints }}
       topologySpreadConstraints:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
     {{- end }}
     {{- with .Values.deployment.dnsConfig }}
       dnsConfig:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
     {{- end }}

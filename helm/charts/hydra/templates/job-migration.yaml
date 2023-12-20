@@ -42,7 +42,7 @@ spec:
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
     {{- end }}
       serviceAccountName: {{ include "hydra.job.serviceAccountName" . }}
       automountServiceAccountToken: {{ .Values.job.automountServiceAccountToken }}
@@ -96,7 +96,7 @@ spec:
       restartPolicy: Never
       {{- with .Values.deployment.podSecurityContext }}
       securityContext:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       shareProcessNamespace: {{ .Values.job.shareProcessNamespace }}
       volumes:
@@ -108,11 +108,11 @@ spec:
         {{- end }}
       {{- with $nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       {{- with .Values.job.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
   backoffLimit: {{ .Values.job.spec.backoffLimit }}
 {{- end }}

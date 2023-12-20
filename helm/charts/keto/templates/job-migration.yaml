@@ -44,7 +44,7 @@ spec:
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "keto.job.serviceAccountName" . }}
       automountServiceAccountToken: {{ .Values.job.automountServiceAccountToken }}
@@ -98,15 +98,15 @@ spec:
           configMap:
             name: {{ include "keto.fullname" . }}-migrate
       {{- with $extraVolumes }}
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       {{- with $nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       {{- with .Values.job.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       shareProcessNamespace: {{ .Values.job.shareProcessNamespace }}
   backoffLimit: {{ .Values.job.spec.backoffLimit }}

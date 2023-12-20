@@ -65,7 +65,7 @@ spec:
           {{- end }}
       {{- with .Values.watcher.podSecurityContext }}
       securityContext:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
       {{- end }}
       volumes:
         {{- if .Values.deployment.extraVolumes }}
