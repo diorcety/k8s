@@ -13,7 +13,7 @@ spec:
   {{- with .Values.global.image.pullSecretNames }}
   imagePullSecrets:
   {{- range . }}
-  - name: {{ . | quote }}
+  - name: {{ tpl . $ | quote }}
   {{- end }}
   {{- end }}
 
